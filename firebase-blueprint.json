@@ -1,0 +1,167 @@
+{
+  "entities": {
+    "CustomerUser": {
+      "title": "CustomerUser",
+      "description": "Registered farmer/customer profile identified by mobile number and unique ID",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique Customer ID based on mobile number, e.g. kisan_9826154320",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Farmer or customer full name",
+          "maxLength": 100
+        },
+        "mobile": {
+          "type": "string",
+          "description": "10-digit mobile number",
+          "maxLength": 15,
+          "pattern": "^[0-9]{10}$"
+        },
+        "village": {
+          "type": "string",
+          "description": "Village name",
+          "maxLength": 100
+        },
+        "tehsil": {
+          "type": "string",
+          "description": "Tehsil name",
+          "maxLength": 100
+        },
+        "district": {
+          "type": "string",
+          "description": "District name (default Mandsaur)",
+          "maxLength": 100
+        },
+        "totalAcre": {
+          "type": "number",
+          "description": "Land size in acres"
+        },
+        "majorCrops": {
+          "type": "string",
+          "description": "Comma separated major crops grown",
+          "maxLength": 200
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "ISO timestamp of customer registration"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "ISO timestamp of last update"
+        }
+      },
+      "required": ["id", "name", "mobile", "village"]
+    },
+    "LedgerEntry": {
+      "title": "LedgerEntry",
+      "description": "Farm transaction record for income or expense",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique entry ID",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerId": {
+          "type": "string",
+          "description": "Reference to the customer ID",
+          "maxLength": 64,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "customerMobile": {
+          "type": "string",
+          "description": "Customer mobile number",
+          "maxLength": 15,
+          "pattern": "^[0-9]{10}$"
+        },
+        "type": {
+          "type": "string",
+          "description": "Transaction type: income or expense",
+          "enum": ["income", "expense"]
+        },
+        "category": {
+          "type": "string",
+          "description": "Category like fasal_vikray, khad, kitnashak, etc.",
+          "maxLength": 50
+        },
+        "title": {
+          "type": "string",
+          "description": "Title or crop name",
+          "maxLength": 150
+        },
+        "partyName": {
+          "type": "string",
+          "description": "Trader, shop, mandi or laborer name",
+          "maxLength": 150
+        },
+        "amount": {
+          "type": "number",
+          "description": "Rupee amount of transaction"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of transaction YYYY-MM-DD",
+          "maxLength": 20
+        },
+        "paymentStatus": {
+          "type": "string",
+          "description": "Paid or pending payment status",
+          "enum": ["paid", "pending", "partial"]
+        },
+        "paymentMode": {
+          "type": "string",
+          "description": "Cash, UPI, bank, or udhari",
+          "enum": ["cash", "online", "bank", "udhar"]
+        },
+        "cropSeason": {
+          "type": "string",
+          "description": "Season e.g. Rabi, Kharif, Jayad",
+          "maxLength": 50
+        },
+        "quantity": {
+          "type": "number",
+          "description": "Quantity in quintals, bags, or liters"
+        },
+        "rate": {
+          "type": "number",
+          "description": "Rate per unit"
+        },
+        "unit": {
+          "type": "string",
+          "description": "Unit of measurement",
+          "maxLength": 20
+        },
+        "remarks": {
+          "type": "string",
+          "description": "Notes or remarks",
+          "maxLength": 500
+        },
+        "createdAt": {
+          "type": "string",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "description": "Last update timestamp"
+        }
+      },
+      "required": ["id", "customerId", "type", "category", "title", "amount", "date"]
+    }
+  },
+  "firestore": {
+    "/customers/{customerId}": {
+      "schema": "CustomerUser",
+      "description": "Customer and farmer profile documents keyed by unique customer ID"
+    },
+    "/customers/{customerId}/entries/{entryId}": {
+      "schema": "LedgerEntry",
+      "description": "Subcollection of bahi-khata ledger entries for each customer"
+    }
+  }
+}

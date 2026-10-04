@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Validation for Customer Profile
+    function isValidCustomer(data) {
+      return data.keys().hasAll(['id', 'name', 'mobile', 'village']) &&
+             data.id is string && isValidId(data.id) &&
+             data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
+             data.mobile is string && data.mobile.size() >= 10 && data.mobile.size() <= 15 &&
+             data.village is string && data.village.size() <= 100;
+    }
+
+    // Validation for Ledger Entry
+    function isValidEntry(data) {
+      return data.keys().hasAll(['id', 'customerId', 'type', 'category', 'title', 'amount', 'date']) &&
+             data.id is string && isValidId(data.id) &&
+             data.customerId is string && isValidId(data.customerId) &&
+             data.type in ['income', 'expense'] &&
+             data.category is string && data.category.size() <= 50 &&
+             data.title is string && data.title.size() <= 150 &&
+             data.amount is number && data.amount >= 0 &&
+             data.date is string && data.date.size() <= 20;
+    }
+
+    // Customers collection
+    match /customers/{customerId} {
+      allow get: if isValidId(customerId);
+      allow list: if true;
+      allow create: if isValidId(customerId) && isValidCustomer(incoming());
+      allow update: if isValidId(customerId) && isValidCustomer(incoming());
+      allow delete: if false;
+
+      // Subcollection of bahi-khata ledger entries
+      match /entries/{entryId} {
+        allow get: if isValidId(customerId) && isValidId(entryId);
+        allow list: if isValidId(customerId);
+        allow create: if isValidId(customerId) && isValidId(entryId) && isValidEntry(incoming());
+        allow update: if isValidId(customerId) && isValidId(entryId) && isValidEntry(incoming());
+        allow delete: if isValidId(customerId) && isValidId(entryId);
+      }
+    }
+  }
+}

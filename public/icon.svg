@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#047857" />
+      <stop offset="50%" stop-color="#065f46" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
+    </filter>
+  </defs>
+
+  <!-- Background with rounded squircles -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+
+  <!-- Outer subtle circular border -->
+  <circle cx="256" cy="256" r="216" fill="none" stroke="#fbbf24" stroke-width="6" stroke-opacity="0.3" stroke-dasharray="16 10" />
+
+  <!-- Inner glowing circle -->
+  <circle cx="256" cy="256" r="185" fill="#064e3b" filter="url(#shadow)" />
+
+  <!-- Gold Accent Ring -->
+  <circle cx="256" cy="256" r="185" fill="none" stroke="url(#goldGrad)" stroke-width="8" />
+
+  <!-- Center Agriculture & Bahi-Khata Ledger Motif -->
+  <!-- Ledger Book Backing -->
+  <rect x="156" y="150" width="200" height="230" rx="18" fill="#ffffff" filter="url(#shadow)" />
+  <rect x="156" y="150" width="30" height="230" rx="6" fill="#b45309" />
+  
+  <!-- Ledger Gold Header Strip -->
+  <rect x="186" y="165" width="155" height="35" rx="6" fill="#047857" />
+  <text x="263" y="189" font-family="'Mukta', sans-serif" font-size="19" font-weight="900" fill="#fbbf24" text-anchor="middle">बही-खाता</text>
+
+  <!-- Ledger Ruling Lines -->
+  <line x1="198" y1="225" x2="335" y2="225" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" />
+  <line x1="198" y1="260" x2="335" y2="260" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" />
+  <line x1="198" y1="295" x2="335" y2="295" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" />
+  <line x1="198" y1="330" x2="335" y2="330" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" />
+
+  <!-- Rupee Symbol in Center -->
+  <circle cx="264" cy="285" r="42" fill="url(#goldGrad)" filter="url(#shadow)" />
+  <text x="264" y="303" font-family="sans-serif" font-size="44" font-weight="900" fill="#022c22" text-anchor="middle">₹</text>
+
+  <!-- Golden Wheat Ears Left & Right -->
+  <g fill="url(#goldGrad)">
+    <!-- Left ear -->
+    <path d="M 120 330 C 105 280 120 220 150 180 C 145 200 135 240 140 280 Z" />
+    <ellipse cx="125" cy="220" rx="14" ry="7" transform="rotate(-30 125 220)" />
+    <ellipse cx="118" cy="250" rx="14" ry="7" transform="rotate(-20 118 250)" />
+    <ellipse cx="120" cy="280" rx="14" ry="7" transform="rotate(-10 120 280)" />
+    <ellipse cx="130" cy="310" rx="14" ry="7" transform="rotate(0 130 310)" />
+
+    <!-- Right ear -->
+    <path d="M 392 330 C 407 280 392 220 362 180 C 367 200 377 240 372 280 Z" />
+    <ellipse cx="387" cy="220" rx="14" ry="7" transform="rotate(30 387 220)" />
+    <ellipse cx="394" cy="250" rx="14" ry="7" transform="rotate(20 394 250)" />
+    <ellipse cx="392" cy="280" rx="14" ry="7" transform="rotate(10 392 280)" />
+    <ellipse cx="382" cy="310" rx="14" ry="7" transform="rotate(0 382 310)" />
+  </g>
+
+  <!-- Bottom Brand Text Tag -->
+  <rect x="136" y="405" width="240" height="42" rx="21" fill="url(#goldGrad)" filter="url(#shadow)" />
+  <text x="256" y="432" font-family="'Mukta', sans-serif" font-size="20" font-weight="900" fill="#022c22" text-anchor="middle">किसान बही-खाता</text>
+</svg>

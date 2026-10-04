@@ -1,0 +1,220 @@
+import { ExpenseCategory, IncomeCategory, CropCostPreset } from '../types';
+
+export const EXPENSE_CATEGORIES: { id: ExpenseCategory; labelHi: string; labelEn: string; icon: string; color: string }[] = [
+  { id: 'khad', labelHi: 'खाद व उर्वरक', labelEn: 'Khad / Fertilizer (DAP, Urea, Potash)', icon: '🌱', color: 'emerald' },
+  { id: 'kitnashak', labelHi: 'कीटनाशक व फफूंदनाशक', labelEn: 'Kitnashak / Pesticide Spray', icon: '🛡️', color: 'amber' },
+  { id: 'beej', labelHi: 'बीज व बुवाई', labelEn: 'Beej / Seeds & Sowing', icon: '🌾', color: 'lime' },
+  { id: 'mazdoori', labelHi: 'मजदूरी व निंदाई', labelEn: 'Mazdoori / Labor', icon: '👷', color: 'orange' },
+  { id: 'diesel_tractor', labelHi: 'डीजल व ट्रैक्टर जुताई', labelEn: 'Diesel & Tractor Plenary', icon: '🚜', color: 'yellow' },
+  { id: 'sinchai_bijli', labelHi: 'सिंचाई व बिजली बिल', labelEn: 'Sinchai / Irrigation & Power', icon: '💧', color: 'blue' },
+  { id: 'katai_thrasher', labelHi: 'कटाई, थ्रेशर व ग्रेडिंग', labelEn: 'Harvesting & Thresher', icon: '⚙️', color: 'purple' },
+  { id: 'transport_bhada', labelHi: 'मंडी भाड़ा व परिवहन', labelEn: 'Transport & Mandi Freight', icon: '🚚', color: 'indigo' },
+  { id: 'mandi_tax_hamali', labelHi: 'हम्माली व तुलाई', labelEn: 'Hamali & Mandi Weighing', icon: '⚖️', color: 'stone' },
+  { id: 'other_expense', labelHi: 'अन्य विविध खर्च', labelEn: 'Other Farm Expenses', icon: '📝', color: 'rose' },
+];
+
+export const INCOME_CATEGORIES: { id: IncomeCategory; labelHi: string; labelEn: string; icon: string; color: string }[] = [
+  { id: 'fasal_bikri', labelHi: 'फसल बिक्री (मंडी / व्यापारी)', labelEn: 'Fasal Bikri / Crop Sale', icon: '💰', color: 'green' },
+  { id: 'bhusa_chara', labelHi: 'भूसा व चारा बिक्री', labelEn: 'Bhusa / Fodder Sale', icon: '🌾', color: 'emerald' },
+  { id: 'sarkari_yojana', labelHi: 'सरकारी योजना / सब्सिडी / बीमा', labelEn: 'PM-Kisan / Subsidy / Bima', icon: '🏛️', color: 'cyan' },
+  { id: 'other_income', labelHi: 'अन्य आमदनी', labelEn: 'Other Farm Income', icon: '💵', color: 'teal' },
+];
+
+export const POPULAR_CROPS = [
+  'लहसुन (Garlic)',
+  'सोयाबीन (Soybean)',
+  'गेहूं (Wheat)',
+  'मैथी (Fenugreek)',
+  'चना (Chickpea)',
+  'सरसों (Mustard)',
+  'इसबगोल (Isabgol)',
+  'प्याज (Onion)',
+  'धनिया (Coriander)',
+  'अलसी (Linseed)',
+  'कलौंजी (Kalonji)',
+  'मक्का (Maize)',
+  'अफीम / खसखस (Poppy)',
+  'मटर (Green Peas)',
+  'सामान्य / पूरा खेत (General)',
+];
+
+export const UNITS = ['क्विंटल (q)', 'बोरी (Bag)', 'किग्रा (kg)', 'लीटर (Ltr)', 'बीघा', 'एकड़', 'दिन (Days)', 'नग (Nos)'];
+
+export const CROP_PRESETS: CropCostPreset[] = [
+  {
+    id: 'lahsun',
+    cropNameHi: 'लहसुन (Garlic)',
+    cropNameEn: 'Garlic (Lahsun)',
+    icon: '🧄',
+    season: 'रबी',
+    seedCostPerBigha: 14000, // Lahsun seed is expensive ~2-2.5 qu/bigha
+    fertilizerCostPerBigha: 5500, // DAP, Potash, Zinc, Sulphur
+    pesticideCostPerBigha: 4200, // Thrips spray, fungicide, growth tonic
+    laborCostPerBigha: 7500, // Chuai (planting), weeding, khodai (harvesting)
+    tractorMachineryCostPerBigha: 3200, // Rotavator, bed maker
+    irrigationCostPerBigha: 2000,
+    otherCostPerBigha: 1500,
+    averageYieldPerBigha: 18, // 15-22 quintal per bigha
+    typicalPricePerQuintal: 14500, // Malwa garlic rate
+    recommendedKhad: {
+      dapKgPerBigha: 30,
+      ureaKgPerBigha: 25,
+      potashKgPerBigha: 25,
+      zincKgPerBigha: 5,
+    },
+  },
+  {
+    id: 'soybean',
+    cropNameHi: 'सोयाबीन (Soybean)',
+    cropNameEn: 'Soybean',
+    icon: '🌱',
+    season: 'खरीफ',
+    seedCostPerBigha: 2200,
+    fertilizerCostPerBigha: 1800,
+    pesticideCostPerBigha: 2400, // Girdle beetle, semilooper, weedicide
+    laborCostPerBigha: 2200,
+    tractorMachineryCostPerBigha: 2800,
+    irrigationCostPerBigha: 500,
+    otherCostPerBigha: 800,
+    averageYieldPerBigha: 5.5, // 5 to 7 qu/bigha
+    typicalPricePerQuintal: 4600,
+    recommendedKhad: {
+      dapKgPerBigha: 20,
+      ureaKgPerBigha: 10,
+      potashKgPerBigha: 15,
+      zincKgPerBigha: 3,
+    },
+  },
+  {
+    id: 'gehun',
+    cropNameHi: 'गेहूं (Wheat)',
+    cropNameEn: 'Wheat (Gehun)',
+    icon: '🌾',
+    season: 'रबी',
+    seedCostPerBigha: 1600,
+    fertilizerCostPerBigha: 2600,
+    pesticideCostPerBigha: 1100,
+    laborCostPerBigha: 1800,
+    tractorMachineryCostPerBigha: 2400,
+    irrigationCostPerBigha: 1800,
+    otherCostPerBigha: 900,
+    averageYieldPerBigha: 12, // 10-15 qu/bigha
+    typicalPricePerQuintal: 2800,
+    recommendedKhad: {
+      dapKgPerBigha: 25,
+      ureaKgPerBigha: 35,
+      potashKgPerBigha: 15,
+      zincKgPerBigha: 4,
+    },
+  },
+  {
+    id: 'methi',
+    cropNameHi: 'मैथी (Fenugreek)',
+    cropNameEn: 'Fenugreek (Methi)',
+    icon: '🌿',
+    season: 'रबी',
+    seedCostPerBigha: 1200,
+    fertilizerCostPerBigha: 1900,
+    pesticideCostPerBigha: 1500,
+    laborCostPerBigha: 2400,
+    tractorMachineryCostPerBigha: 2100,
+    irrigationCostPerBigha: 1400,
+    otherCostPerBigha: 700,
+    averageYieldPerBigha: 4.5,
+    typicalPricePerQuintal: 5600,
+    recommendedKhad: {
+      dapKgPerBigha: 18,
+      ureaKgPerBigha: 12,
+      potashKgPerBigha: 10,
+      zincKgPerBigha: 3,
+    },
+  },
+  {
+    id: 'chana',
+    cropNameHi: 'चना (Chickpea)',
+    cropNameEn: 'Gram / Chana',
+    icon: '🫘',
+    season: 'रबी',
+    seedCostPerBigha: 2400,
+    fertilizerCostPerBigha: 1600,
+    pesticideCostPerBigha: 1800, // Caterpillar / Illi spray
+    laborCostPerBigha: 1900,
+    tractorMachineryCostPerBigha: 2000,
+    irrigationCostPerBigha: 1000,
+    otherCostPerBigha: 600,
+    averageYieldPerBigha: 6,
+    typicalPricePerQuintal: 5900,
+    recommendedKhad: {
+      dapKgPerBigha: 18,
+      ureaKgPerBigha: 8,
+      potashKgPerBigha: 10,
+      zincKgPerBigha: 3,
+    },
+  },
+  {
+    id: 'sarson',
+    cropNameHi: 'सरसों (Mustard)',
+    cropNameEn: 'Mustard (Sarson)',
+    icon: '🌼',
+    season: 'रबी',
+    seedCostPerBigha: 800,
+    fertilizerCostPerBigha: 2100,
+    pesticideCostPerBigha: 1200,
+    laborCostPerBigha: 1800,
+    tractorMachineryCostPerBigha: 1900,
+    irrigationCostPerBigha: 1200,
+    otherCostPerBigha: 600,
+    averageYieldPerBigha: 5.5,
+    typicalPricePerQuintal: 5400,
+    recommendedKhad: {
+      dapKgPerBigha: 20,
+      ureaKgPerBigha: 25,
+      potashKgPerBigha: 12,
+      zincKgPerBigha: 4,
+    },
+  },
+  {
+    id: 'isabgol',
+    cropNameHi: 'इसबगोल (Isabgol)',
+    cropNameEn: 'Psyllium (Isabgol)',
+    icon: '🌱',
+    season: 'रबी',
+    seedCostPerBigha: 1100,
+    fertilizerCostPerBigha: 1700,
+    pesticideCostPerBigha: 1400,
+    laborCostPerBigha: 2200,
+    tractorMachineryCostPerBigha: 1800,
+    irrigationCostPerBigha: 1200,
+    otherCostPerBigha: 700,
+    averageYieldPerBigha: 3.5,
+    typicalPricePerQuintal: 14800,
+    recommendedKhad: {
+      dapKgPerBigha: 15,
+      ureaKgPerBigha: 15,
+      potashKgPerBigha: 10,
+      zincKgPerBigha: 2,
+    },
+  },
+  {
+    id: 'pyaz',
+    cropNameHi: 'प्याज (Onion)',
+    cropNameEn: 'Onion (Pyaz)',
+    icon: '🧅',
+    season: 'रबी/खरीफ',
+    seedCostPerBigha: 4500,
+    fertilizerCostPerBigha: 4200,
+    pesticideCostPerBigha: 3500,
+    laborCostPerBigha: 5500,
+    tractorMachineryCostPerBigha: 2600,
+    irrigationCostPerBigha: 1900,
+    otherCostPerBigha: 1100,
+    averageYieldPerBigha: 45, // In quintals
+    typicalPricePerQuintal: 1650,
+    recommendedKhad: {
+      dapKgPerBigha: 25,
+      ureaKgPerBigha: 30,
+      potashKgPerBigha: 20,
+      zincKgPerBigha: 4,
+    },
+  },
+];

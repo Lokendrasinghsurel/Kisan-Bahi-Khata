@@ -1,0 +1,6 @@
+{
+  "name": "किसान बही-खाता (Kisan Bahi Khata) - मंदसौर मंडी",
+  "description": "किसानों के लिए रोजाना का डिजिटल बही-खाता, मंदसौर मंडी भाव, फसल-खाद-कीटनाशक व मुनाफा का ग्राफिकल विश्लेषण और फसल लागत कैलकुलेटर।",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
